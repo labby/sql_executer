@@ -1,0 +1,72 @@
+{% include "header.lte" %}
+{% autoescape false %}
+  {% if info != '' %}<div class="{% if problem == 1%}problem{% else %}info{% endif %} ui-corner-all">{{ info }}</div><br />{% endif %}
+  <form method="post" action="{{ action }}">
+  <input type="hidden" name="tool" value="sql_executer" />
+  {% if can_add %}<input type="submit" name="add" class="ui-button ui-button-text" value="{{ MOD_SQLEXECUTER['Create new'] }}" />{% endif %}
+  {% if can_perms %}<input type="submit" name="perms" class="flick1 ui-button ui-button-text" value="{{ MOD_SQLEXECUTER['Manage global permissions'] }}" />{% endif %}
+  <br /><br />
+  
+  {% if num_rows== 0 %}
+  <div class="info ui-corner-all">{{ MOD_SQLEXECUTER['No SQL found'] }}</div>
+  {% else %}
+  <table class="sql tablesorter">
+	<thead>
+	  <tr>
+		<th style="width:140px;"><input type="checkbox" name="checkall" id="checkall" />{{ MOD_SQLEXECUTER['Actions'] }}</th>
+		<th>{{ MOD_SQLEXECUTER['Name'] }}</th>
+		<th>{{ MOD_SQLEXECUTER['Description'] }}</th>
+		<th style="width:50px;">{{ MOD_SQLEXECUTER['Active'] }}</th>
+		<th style="width:50px;">{{ MOD_SQLEXECUTER['Run'] }}</th>
+	  </tr>
+	</thead>
+	<tbody>
+	{% for item in rows %}
+      <tr>
+        <td>
+          {% if can_delete is defined %}<input type="checkbox" name="markedsql[]" id="markedsql_{{ item.id }}" value="{{ item.id }}" />{% endif %}
+          {% if can_modify is defined or item.user_can_modify_this is defined %}<a href="{{ ADMIN_URL }}/admintools/tool.php?tool=sql_executer&amp;edit={{ item.id }}" title="{{ MOD_SQLEXECUTER['Modify'] }}">
+			<img src="{{ IMGURL }}/modify.png" alt="{{ TEXT['Modify'] }}" />
+   		  </a>
+          {% endif %}
+          {% if can_delete is defined %}
+		  <a class="del" href="javascript: confirm_link('{{ TEXT['ARE_YOU_SURE'] }}','{{ ADMIN_URL }}/admintools/tool.php?tool=sql_executer&amp;del={{ item.id }}')">
+		    <img src="{{ IMGURL }}/delete.png" title="{{ TEXT['Delete'] }}" />
+		  </a>
+		  {% endif %}
+          {% if item.datafile is defined %}
+          <a href="{{ ADMIN_URL }}/admintools/tool.php?tool=sql_executer&amp;datafile={{ item.id }}">
+            <img src="{{ IMGURL }}/edit.png" title="{{ MOD_SQLEXECUTER['Edit datafile'] }}" />
+          </a>
+          {% endif %}
+		</td>
+        <td>
+		  {{ item.name }}
+		</td>
+        <td>{{ item.description }}</td>
+        <td>
+		{% if can_modify is defined or item.user_can_modify_this is defined %}
+		  <a href="{{ ADMIN_URL }}/admintools/tool.php?tool=sql_executer&amp;toggle={{ item.id }}">
+			{% if item.active == 1 %}
+				<img src="{{ IMGURL }}/ok.png" title="{{ MOD_SQLEXECUTER['Yes'] }}" />
+			{% else %}
+				<img src="{{ IMGURL }}/no.png" title="{{ MOD_SQLEXECUTER['No'] }}" />
+			{% endif %}</a>
+		{% endif %}
+		</td>
+		<td>
+		  <a href="{{ ADMIN_URL }}/admintools/tool.php?tool=sql_executer&amp;execute={{ item.id }}">
+		  <img src="{{ IMGURL }}/execute.png" alt="{{ MOD_SQLEXECUTER['Run'] }}" title="{{ MOD_SQLEXECUTER['Run'] }}" />
+		  </a>
+		</td>
+	  </tr>
+	{% endfor %}
+	</tbody>
+  </table><br />
+  {% if can_delete is defined %}{{ MOD_SQLEXECUTER['marked'] }}:<br />
+  {% if can_delete is defined %}<input type="submit" name="delete" value="{{ TEXT['DELETE'] }}" />{% endif %}
+  {% endif %}
+  </form>
+  {% endif %}
+{% endautoescape %}
+{% include "footer.lte" %}

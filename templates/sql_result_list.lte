@@ -1,0 +1,16 @@
+{% autoescape false %}
+<table class="sql_executer_result">
+{% for item in header_items %}
+<th>{{ item }}</th>
+{% endfor %}
+
+{% for row in results %}
+<tr>
+	{% for item in row %}
+	<td class="sql_result_item">{{ item }}</td>
+	{% endfor %}
+</tr>
+{% endfor %}
+
+</table>
+{% endautoescape %}
