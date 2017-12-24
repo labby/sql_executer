@@ -57,6 +57,10 @@ width:100%;
 /**
  *	SQL result-table
  */
+table.sql_executer_result tr:nth-of-type(odd) td { 
+	background-color: #F5F6CE; 
+}
+
 table.sql_executer_result{
 	border-collapse: collapse;
 	width: auto;

@@ -6,9 +6,9 @@
 
 {% for row in results %}
 <tr>
-	{% for item in row %}
-	<td class="sql_result_item">{{ item }}</td>
-	{% endfor %}
+	{% for key,item in row %} 
+		<td class="sql_result_item" title="{{key}}">{{ item }}</td> 
+	{% endfor %} 
 </tr>
 {% endfor %}
 

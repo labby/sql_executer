@@ -39,7 +39,7 @@ else
 $module_directory = 'sql_executer';
 $module_name = 'SQL-Executer';
 $module_function = 'tool';
-$module_version = '0.3.0';
+$module_version = '0.4.0';
 $module_platform = '2.x';
 $module_delete =  true;
 $module_author = 'CMS-LAB';
