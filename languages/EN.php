@@ -3,8 +3,8 @@
 /**
  *  @module         SQL-Executer
  *  @version        see info.php of this module
- *  @authors        cms-lab
- *  @copyright      2013-2014 cms-lab 
+ *  @authors        CMS-LAB
+ *  @copyright      2013-2017 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -46,7 +46,8 @@ $MOD_SQLEXECUTER = array(
 	'Delete sql' => 'Delete sql',  
  	'Description' => 'Description',
 	'edit sql'	=> 'Edit SQL ',   
-	'Manage permissions' => 'Manage permissions',
+//	'Manage permissions' => 'Manage permissions',
+	'Manage perms' => 'Manage permissions',
 	'Manage global permissions' => 'Manage global permissions',      
 	'marked' => 'marked',
 	'Modify' => 'Modify',

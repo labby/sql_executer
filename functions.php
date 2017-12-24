@@ -3,8 +3,8 @@
 /**
  *  @module         SQL-Executer
  *  @version        see info.php of this module
- *  @authors        cms-lab
- *  @copyright      2013-2014 cms-lab 
+ *  @authors        CMS-LAB
+ *  @copyright      2013-2017 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -56,7 +56,7 @@ function list_sql( $info = NULL )
 
     if ( $query->numRows() )
     {
-        while ( $sql_content = $query->fetchRow( MYSQL_ASSOC ) )
+        while ( $sql_content = $query->fetchRow() )
         {
             // the current user needs global edit permissions, or specific edit permissions to see this
             if ( !is_allowed( 'modify_sql', $groups ) )
@@ -143,7 +143,7 @@ function delete_sql()
     {
         // get the name; needed to delete data file
         $query = $database->query( "SELECT name FROM " . TABLE_PREFIX . "mod_sqlexecuter WHERE id = '$id'" );
-        $data  = $query->fetchRow( MYSQL_ASSOC );
+        $data  = $query->fetchRow();
         $database->query( "DELETE FROM " . TABLE_PREFIX . "mod_sqlexecuter WHERE id = '$id'" );
         if ( $database->is_error() )
         {
@@ -206,7 +206,7 @@ function edit_sql( $id )
     if ( $id != 'new' )
     {
         $query        = $database->query( "SELECT * FROM " . TABLE_PREFIX . "mod_sqlexecuter WHERE id = '$id'" );
-        $data         = $query->fetchRow( MYSQL_ASSOC );
+        $data         = $query->fetchRow();
     }
     else
     {
@@ -235,13 +235,13 @@ function edit_sql( $id )
             if ( count( $problems ) == 0 )
             {
                 $continue      = true;
-                $title         = $admin->add_slashes( $admin->get_post( 'name' ) );
+                $title         = addslashes( $admin->get_post( 'name' ) );
                 $active        = $admin->get_post( 'active' );
                 $show_wysiwyg  = $admin->get_post( 'show_wysiwyg' );
-                $description   = $admin->add_slashes( $admin->get_post( 'description' ) );
+                $description   = addslashes( $admin->get_post( 'description' ) );
                 
                 $content       = $admin->get_post( 'code' );
-                $comments      = $admin->add_slashes( $admin->get_post( 'comments' ) );
+                $comments      = addslashes( $admin->get_post( 'comments' ) );
                 $modified_when = time();
                 $modified_by   = $admin->get_user_id();
                 if ( $id == 'new' )
@@ -257,7 +257,7 @@ function edit_sql( $id )
                     }
                     else
                     {
-						$code  = $admin->add_slashes( $content );
+						$code  = addslashes( $content );
 						// generate query
 						$query = "INSERT INTO " . TABLE_PREFIX . "mod_sqlexecuter VALUES "
 							   . "(''," . "'$title', " . "'$code', " . "'$description', " . "'$modified_when', " . "'$modified_by', " . "'$active',1,1, '$show_wysiwyg', '$comments' )";
@@ -273,12 +273,12 @@ function edit_sql( $id )
                 { 
                     // Update row
                     $database->query( "UPDATE " . TABLE_PREFIX . "mod_sqlexecuter SET name = '$title', active = '$active', show_wysiwyg = '$show_wysiwyg', description = '$description', code = '"
-                                    . $admin->add_slashes( $content )
+                                    . addslashes( $content )
                                     . "', comments = '$comments', modified_when = '$modified_when', modified_by = '$modified_by' WHERE id = '$id'"
                     );
                     // reload data
                     $query = $database->query( "SELECT * FROM " . TABLE_PREFIX . "mod_sqlexecuter WHERE id = '$id'" );
-                    $data  = $query->fetchRow( MYSQL_ASSOC );
+                    $data  = $query->fetchRow();
                 }
                 if ( $continue )
                 {
@@ -343,7 +343,7 @@ function manage_perms()
     $query = $database->query( 'SELECT group_id, name FROM ' . TABLE_PREFIX . 'groups ORDER BY name' );
     if ( $query->numRows() )
     {
-        while ( $row = $query->fetchRow( MYSQL_ASSOC ) )
+        while ( $row = $query->fetchRow() )
         {
             $groups[ $row[ 'group_id' ] ] = $row[ 'name' ];
         }
@@ -413,7 +413,7 @@ function edit_datafile( $id )
     }
 
     $query = $database->query( "SELECT name FROM " . TABLE_PREFIX . "mod_sqlexecuter WHERE id = '$id'" );
-    $data  = $query->fetchRow( MYSQL_ASSOC );
+    $data  = $query->fetchRow();
 
 	$files = array(
 		dirname( __FILE__ ) . '/data/' . $data[ 'name' ] . '.txt',
@@ -482,7 +482,7 @@ function toggle_active( $id )
     }
 
     $query = $database->query( "SELECT `active` FROM " . TABLE_PREFIX . "mod_sqlexecuter WHERE id = '$id'" );
-    $data  = $query->fetchRow( MYSQL_ASSOC );
+    $data  = $query->fetchRow();
 
     $new = ( $data[ 'active' ] == 1 ) ? 0 : 1;
 
@@ -572,7 +572,7 @@ function get_settings()
     $query    = $database->query( 'SELECT * FROM ' . TABLE_PREFIX . 'mod_sqlexecuter_settings' );
     if ( $query->numRows() )
     {
-        while ( $row = $query->fetchRow( MYSQL_ASSOC ) )
+        while ( $row = $query->fetchRow() )
         {
             if ( substr_count( $row[ 'value' ], '|' ) )
             {

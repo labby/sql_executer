@@ -3,8 +3,8 @@
 /**
  *  @module         SQL-Executer
  *  @version        see info.php of this module
- *  @authors        cms-lab
- *  @copyright      2013-2014 cms-lab 
+ *  @authors        CMS-LAB
+ *  @copyright      2013-2017 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -39,10 +39,10 @@ else
 $module_directory = 'sql_executer';
 $module_name = 'SQL-Executer';
 $module_function = 'tool';
-$module_version = '0.2.3';
+$module_version = '0.3.0';
 $module_platform = '2.x';
 $module_delete =  true;
-$module_author = 'cms-lab';
+$module_author = 'CMS-LAB';
 $module_license = 'GNU General Public License';
 $module_description = 'This tool allows you to maintain your database';
 $module_home = 'http://www.cms-lab.com/';

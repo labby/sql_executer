@@ -3,8 +3,8 @@
 /**
  *  @module         SQL-Executer
  *  @version        see info.php of this module
- *  @authors        cms-lab
- *  @copyright      2013-2014 cms-lab 
+ *  @authors        CMS-LAB
+ *  @copyright      2013-2017 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -39,14 +39,15 @@ else
 $MOD_SQLEXECUTER = array(
  	'Actions' => 'Aktionen',
  	'Active' => 'Aktiv',
-	'Add SQLs' => 'SQLs hinzuf&uuml;gen',    
+	'Add sql' => 'SQLs hinzuf&uuml;gen',    
  	'Back to overview' => 'Zur&uuml;ck zur &Uuml;bersicht',   
  	'Create new' => 'Neues SQL',  
 	'Delete' => 'L&ouml;schen',
-	'Delete SQLs' => 'SQLs l&ouml;schen',  
+	'Delete sql' => 'SQLs l&ouml;schen',  
  	'Description' => 'Beschreibung',
-	'edit SQL'	=> 'SQL bearbeiten',  
-	'Manage permissions' => 'Rechte verwalten',
+	'edit sql'	=> 'SQL bearbeiten',  
+//	'Manage permissions' => 'Rechte verwalten',
+	'Manage perms' => 'Rechte verwalten',	
 	'Manage global permissions' => 'Globale Rechte verwalten',    
 	'marked' => 'markierte',
 	'Modify' => 'Bearbeiten',
