@@ -36,21 +36,26 @@ else
 }
 // end include class.secure.php
 
-// create new table
-$table_fields="
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(32) NOT NULL default '',
-	`description` TEXT NOT NULL,
-	`comments` TEXT NOT NULL,	
-	`code` LONGTEXT NOT NULL ,
-	`active` INT NOT NULL default '0',	
-	 PRIMARY KEY ( `id` )
-";
-LEPTON_handle::install_table("mod_sqlexecuter", $table_fields);
+// check if older release is already installed
+if(file_exists(LEPTON_PATH.'/modules/sql_executer/info.php')) {
+	require_once LEPTON_PATH.'/modules/sqlexecuter/upgrade.php';
+} else {
+	// create new table
+	$table_fields="
+		`id` INT NOT NULL AUTO_INCREMENT,
+		`name` VARCHAR(32) NOT NULL default '',
+		`description` TEXT NOT NULL,
+		`comments` TEXT NOT NULL,	
+		`code` LONGTEXT NOT NULL ,
+		`active` INT NOT NULL default '0',	
+		 PRIMARY KEY ( `id` )
+	";
+	LEPTON_handle::install_table("mod_sqlexecuter", $table_fields);
 
-// insert some default values
-$field_values="
-(NULL,'empty temp', 'empty temp table', 'if your ip is locked ', 'TRUNCATE lep_temp', 1)
-";
-LEPTON_handle::insert_values("mod_sqlexecuter", $field_values);
+	// insert some default values
+	$field_values="
+	(NULL,'empty temp', 'empty temp table', 'if your ip is locked ', 'TRUNCATE lep_temp', 1)
+	";
+	LEPTON_handle::insert_values("mod_sqlexecuter", $field_values);
+}
 ?>
