@@ -4,7 +4,7 @@
  *  @module         SQL-Executer
  *  @version        see info.php of this module
  *  @authors        CMS-LAB
- *  @copyright      2013-2017 cms-lab 
+ *  @copyright      2013-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -37,10 +37,8 @@ else
 // end include class.secure.php
 
 // Checking Requirements
-$PRECHECK['LEPTON_VERSION'] = array('VERSION' => '2.0', 'OPERATOR' => '>=');
-
-$PRECHECK['ADDONS']      = array(
-    'lib_twig' => array('VERSION' => '0.1.16.1', 'OPERATOR' => '>='),
-)
-
+$PRECHECK['VERSION']        = array(
+    'VERSION' => '4.0',
+    'OPERATOR' => '>='
+);
 ?>

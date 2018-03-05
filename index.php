@@ -1,16 +1,12 @@
 <?php
 
 /**
- * This file is part of an ADDON for use with LEPTON Core.
- * This ADDON is released under the GNU GPL.
- * Additional license terms can be seen in the info.php of this module.
- *
- * @module          dropleps
- * @author          LEPTON Project
- * @copyright       2010-2014 LEPTON Project
- * @link            http://www.LEPTON-cms.org
- * @license         http://www.gnu.org/licenses/gpl.html
- * @license_terms   please see info.php of this module
+ *  @module         SQL-Executer
+ *  @version        see info.php of this module
+ *  @authors        CMS-LAB
+ *  @copyright      2013-2018 cms-lab 
+ *  @license        GNU General Public License
+ *  @license terms  see info.php of this module
  *
  */
 

@@ -1,0 +1,48 @@
+{#
+/**
+ *  @module         SQL-Executer
+ *  @version        see info.php of this module
+ *  @authors        CMS-LAB
+ *  @copyright      2013-2018 cms-lab 
+ *  @license        GNU General Public License
+ *  @license terms  see info.php of this module
+ *
+ */
+ #}
+ 
+<!-- start twig content -->
+{% autoescape false %}
+<div class="ui {{ oSQF.addon_color }} segment">
+	<h3 class="ui header">Module Info</h3>
+	<div class="ui basic segment">
+		<h3 class="ui header"></h3>
+		<div class="spacer"></div>
+		<div class="ui grid">
+			<div class="one wide column"></div>					
+			<div class="five wide column">
+				<img src="{{ image_url }}" class="module_icon" />
+			</div>
+			<div class="eight wide column custom_link">
+				<h3>{{ oSQF.module_name }}</h3>
+				<h4>{{ oSQF.module_description }}</h4>
+				<p> </p>						
+				<p>{{ TEXT.VERSION }}: {{ oSQF.module_version }}</p>	
+				<p> </p>						
+				<p>{{ oSQF.module_license }}: {{ oSQF.module_license_terms }}</p>
+				<p> </p>						
+				<div class="ui basic button">
+				<i class="{{ oSQF.addon_color }} icon call square"></i>
+				<!-- include js code -->
+				{{ SUPPORT }}
+				</div>
+				<p> </p>
+				<p>{{ readme_link }}</p>
+				<div class="spacer3"> </div>						
+				<p><a href="{{ oSQF.action_url }}"><input class="ui {{ oSQF.addon_color }} button" type="submit" value="{{ TEXT.BACK }}" /></a></p>							
+				</div>
+			<div class="two wide column"></div>
+		</div>
+	</div>
+</div>
+{% endautoescape %}
+<!-- end twig content -->

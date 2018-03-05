@@ -4,7 +4,7 @@
  *  @module         SQL-Executer
  *  @version        see info.php of this module
  *  @authors        CMS-LAB
- *  @copyright      2013-2017 cms-lab 
+ *  @copyright      2013-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -37,33 +37,38 @@ else
 // end include class.secure.php
 
 $MOD_SQLEXECUTER = array(
- 	'Actions' => 'Actions',
- 	'Active' => 'Active',
+ 	'actions' => 'Actions',
+ 	'active' => 'Active',
 	'Add sql' => 'Add SQL',    
  	'Back to overview' => 'Back to overview',   
  	'Create new' => 'Create new',  
 	'Delete' => 'Delete',
 	'Delete sql' => 'Delete sql',  
- 	'Description' => 'Description',
-	'edit sql'	=> 'Edit SQL ',   
+ 	'description' => 'Description',
+	'edit_sql'	=> 'Edit SQL ',  
+ 	'list_queries' => 'List Queries',		
 //	'Manage permissions' => 'Manage permissions',
 	'Manage perms' => 'Manage permissions',
 	'Manage global permissions' => 'Manage global permissions',      
 	'marked' => 'marked',
 	'Modify' => 'Modify',
 	'Modify sql' => 'Modify sql',
- 	'Name' => 'Name',          
- 	'No sql found' => 'No sql found',
+ 	'name' => 'Name',          
+ 	'no_sqls' => 'No sql found',
+	'not_active' => 'not aktive',
 	'Permissions' => 'Permissions',
 	'Permissions saved' => 'Permissions saved',   
 	'Please enter a name!' => 'Please enter a name!',
 	'Please mark some sql to delete' => 'Please mark some sql to delete',
- 	'Run' => 'Execute',
- 	'Run ok' => 'SQL Query executed succesfull',
- 	'Run false' => 'SQL Query executed not succesfull',	
+	'record_deleted' => 'Record deleted',
+	'record_saved' => 'Record saved',
+ 	'run' => 'Execute',
+ 	'run_ok' => 'SQL Query executed succesfull',
+ 	'run_false' => 'SQL Query executed not succesfull',	
 	'Save and Back' => 'Save and Back',           
  	'Size' => 'Size',
- 	'SQL not active' => 'SQL Statement is not active',		
+ 	'SQL not active' => 'SQL Statement is not active',
+	'toggle_saved' => 'toggle saved',		
  	'The SQL was saved' => 'The SQL was saved',
 	'Unable to delete SQL: {{id}}' => 'Unable to delete SQL: {{id}}',
 	'Use' => 'Use',

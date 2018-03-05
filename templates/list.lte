@@ -1,0 +1,76 @@
+{#
+/**
+ *  @module         SQL-Executer
+ *  @version        see info.php of this module
+ *  @authors        CMS-LAB
+ *  @copyright      2013-2018 cms-lab 
+ *  @license        GNU General Public License
+ *  @license terms  see info.php of this module
+ *
+ */
+ #}
+ 
+{% autoescape false %}
+<div class="ui {{ oSQF.addon_color }} segment">
+	<div class="ui basic segment">
+		<h3 class="ui header">{{ oSQF.module_name }}</h3>
+		<form class="ui form">	
+			<a href="{{ help }}" target="_blank"><button class="ui {{ oSQF.addon_color }} basic right floated button" type="button"><i class="help icon"></i>HELP</button></a>					
+			<button class="ui {{ oSQF.addon_color }} basic right floated button" type="submit" name="job" value="show_info" title="show_info" formaction="{{ action_url }}" formmethod="post"><i class="info icon"></i>INFO</button>
+			 <a href="{{ oSQF.action_url }}" title="Reload"><button class="ui {{ oSQF.addon_color }} basic right floated button" type="button"><i class="sync alternate icon"></i>RELOAD</button></a>
+		</form>
+	</div>
+	<div class="ui basic segment">				
+		<h3 class="ui {{ oSQF.addon_color }} header">{{ oSQF.language.list_queries }}</h3>
+		<form class="ui form" id="list" action="{{ oSQF.action_url }}" method="post">	
+			<input type="hidden" name="tool" value="{{ oSQF.module_directory }}" />			
+			<input type="hidden" name="leptoken" value="{{ leptoken }}" />						
+			{% if info != '' %}<div class="ui green message">{{ info }}</div>{% endif %}
+			{% if problem != '' %}<div class="ui red message">{{ problem }}</div>{% endif %}
+			{% if oSQF.all_sql == '' %}
+			  <div class="info ui-corner-all">{{  oSQF.language.no_sqls }}</div>
+			{% else %}
+			  <table class="ui stackable padded striped single line table">
+				<thead>
+				  <tr>
+					<th>{{ oSQF.language.name }}</th>
+					<th>{{ oSQF.language.description }}</th>
+					<th>{{ oSQF.language.actions }}</th>
+				  </tr>
+				</thead>
+				<tbody>	
+				{% for item in oSQF.all_sql %}
+					<tr>
+						<td>{{ item.name }}</td>
+						<td>{{ item.description }}</td>		
+						<td>
+							<button class="ui basic button blank" type="submit" name="edit_sql" value="{{ item.id }}" title="{{ TEXT.MODIFY }}" formaction="{{ oSQF.action_url }}" formmethod="post"><i class="large {{ oSQF.addon_color }} write icon"></i></button>
+							<button class="ui basic button blank" type="submit" name="delete_sql" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oSQF.action_url }}" formmethod="post"><i class="large red remove icon"></i></button>							
+							<button class="ui basic button blank" type="submit" name="toggle" value="{{ item.id }}" title="{% if item.active == 1 %}{{ oSQF.language.active }}{% else %}{{ oSQF.language.not_active }}{% endif %}" formaction="{{ oSQF.action_url }}" formmethod="post">
+							{% if item.active == 1 %}
+								<i class="large green thumbs up icon"></i>
+							{% else %}
+								<i class="large red thumbs down icon"></i>
+							{% endif %}
+							</button>
+							{% if item.active == 1 %}							
+								<button class="ui basic button blank" type="submit" name="execute_sql" value="{{ item.id }}" title="{{ oSQF.language.run }}" formaction="{{ oSQF.action_url }}" formmethod="post"><i class="large green play icon"></i></button>
+							{% endif %}
+						</td>			
+					</tr>
+				{% endfor %}	
+				</tbody>
+				<tfoot>
+					<tr>
+						<th></th>
+						<th></th>						
+						<th><button class="ui {{ oSQF.addon_color }} button" type="submit" name="save_sql" value="-1"><i class="plus icon"></i>{{ TEXT.ADD }}</button></th>
+					</tr>
+				</tfoot>	
+			  </table>
+			{% endif %}				
+		</form>							
+		<div class="spacer2"></div>					
+	</div>
+</div>
+{% endautoescape %}

@@ -1,2 +1,2 @@
-# sql_executer
+# sqlexecuter
 Manage sql queries via backend

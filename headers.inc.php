@@ -4,7 +4,7 @@
  *  @module         SQL-Executer
  *  @version        see info.php of this module
  *  @authors        CMS-LAB
- *  @copyright      2013-2017 cms-lab 
+ *  @copyright      2013-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -36,30 +36,19 @@ else
 }
 // end include class.secure.php
 
-$mod_headers = array();
-
-if ( file_exists( LEPTON_PATH.'/modules/lib_jquery/plugins/fancybox' ) ) {
-    $mod_headers = array(
-		'backend' => array(
-		    'css' => array(
-				array(
-					'media'		=> 'screen',
-					'file'		=> '/modules/lib_jquery/plugins/fancybox/jquery.fancybox-1.3.1.css',
-				)
-			),
-			'jquery' => array(
-				array(
-					'core'			=> false,
-					'ui'			=> true,
-					'ui-theme'		=> 'south_street',
-	//				'ui-components'	=> array ( 'widget' , 'mouse', 'position' , 'resizable' , 'button' , 'dialog' , 'tabs' , 'selectmenu' )
-					),
-			),							
-			'js' => array(
-                '/modules/lib_jquery/plugins/fancybox/jquery.fancybox-1.3.1.pack.js',
-			),
+$mod_headers = array(
+	'backend' => array(
+        'css' => array(
+		array(
+			'media'  => 'all',
+			'file'  => 'modules/lib_semantic/dist/semantic.min.css'
+			)		
+ 		),				
+		'js' => array(
+			'modules/lib_jquery/jquery-core/jquery-core.min.js',
+			'modules/lib_jquery/jquery-core/jquery-migrate.min.js',
+			'modules/lib_semantic/dist/semantic.min.js'
 		),
-	);
-}
-
+	)
+);
 ?>

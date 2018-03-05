@@ -4,7 +4,7 @@
  *  @module         SQL-Executer
  *  @version        see info.php of this module
  *  @authors        CMS-LAB
- *  @copyright      2013-2017 cms-lab 
+ *  @copyright      2013-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -37,33 +37,38 @@ else
 // end include class.secure.php
 
 $MOD_SQLEXECUTER = array(
- 	'Actions' => 'Aktionen',
- 	'Active' => 'Aktiv',
+ 	'actions' => 'Aktionen',
+ 	'active' => 'Aktiv',
 	'Add sql' => 'SQLs hinzuf&uuml;gen',    
  	'Back to overview' => 'Zur&uuml;ck zur &Uuml;bersicht',   
  	'Create new' => 'Neues SQL',  
 	'Delete' => 'L&ouml;schen',
 	'Delete sql' => 'SQLs l&ouml;schen',  
- 	'Description' => 'Beschreibung',
-	'edit sql'	=> 'SQL bearbeiten',  
+ 	'description' => 'Beschreibung',
+	'edit_sql'	=> 'SQL bearbeiten',
+ 	'list_queries' => 'Liste Abfragen',	
 //	'Manage permissions' => 'Rechte verwalten',
 	'Manage perms' => 'Rechte verwalten',	
 	'Manage global permissions' => 'Globale Rechte verwalten',    
 	'marked' => 'markierte',
 	'Modify' => 'Bearbeiten',
 	'Modify sql' => 'SQLs bearbeiten',   
- 	'Name' => 'Name',       
- 	'No sqls found' => 'Keine SQLs gefunden',
+ 	'name' => 'Name',       
+ 	'no_sqls' => 'Keine SQLs gefunden',
+	'not_active' => 'Nicht aktiv',
 	'Permissions' => 'Rechte',
 	'Permissions saved' => 'Rechte gespeichert',     
 	'Please enter a name!' => 'Bitte einen Namen eingeben!',
 	'Please mark some sql to delete' => 'Bitte SQL(s) zum L&ouml;schen markieren',
- 	'Run' => 'Ausführen',  
- 	'Run ok' => 'SQL Query erfolgreich ausgeführt',
- 	'Run false' => 'SQL Query nicht erfolgreich ausgeführt',	
+	'record_deleted' => 'Datensatz gelöscht',
+	'record_saved' => 'Datensatz gespeichert',
+ 	'run' => 'Ausführen',  
+ 	'run_ok' => 'SQL Query erfolgreich ausgeführt',
+ 	'run_false' => 'SQL Query nicht erfolgreich ausgeführt',	
 	'Save and Back' => 'Speichern und zur&uuml;ck',         
  	'Size' => 'Dateigr&ouml;sse',
- 	'SQL not active' => 'SQL Statement ist nicht aktiv',			
+ 	'SQL not active' => 'SQL Statement ist nicht aktiv',
+	'toggle_saved' => 'Status umgestellt',	
  	'The SQL was saved' => 'SQL gespeichert',
 	'Unable to delete SQL: {{id}}' => 'Fehler beim L&ouml;schen von SQL: {{id}}',
 	'Use' => 'Verwendung',

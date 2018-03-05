@@ -4,7 +4,7 @@
  *  @module         SQL-Executer
  *  @version        see info.php of this module
  *  @authors        CMS-LAB
- *  @copyright      2013-2017 cms-lab 
+ *  @copyright      2013-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -36,70 +36,39 @@ else
 }
 // end include class.secure.php
 
-require_once(LEPTON_PATH.'/modules/sql_executer/functions.php');
-    
-global $parser;
-global $loader;
+$debug = true;
 
-if (!is_object($parser) ) require_once( LEPTON_PATH."/modules/lib_twig/library.php" );
+if (true === $debug) {
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+}
 
-$loader->prependPath( dirname(__FILE__)."/templates/" );
+if(isset ($_GET['tool'])) {
+	$toolname = $_GET['tool'];
+} else {
+	die('[1]');
+}
 
-$parser->addGlobal('ADMIN_URL', ADMIN_URL);
-$parser->addGlobal('IMGURL', LEPTON_URL . '/modules/sql_executer/img');
-$parser->addGlobal('DOCURL', LEPTON_URL . '/modules/sql_executer/docs/readme.php?url='.LEPTON_URL.'/modules/sql_executer/docs');
-$parser->addGlobal('action', ADMIN_URL . '/admintools/tool.php?tool=sql_executer');
-$parser->addGlobal('TEXT', $TEXT);
+// get instance of functions file
+$oSQF = sqlexecuter_functions::getInstance();
 
-global $settings;
-$settings = get_settings();
+if(isset ($_GET['tool']) && (empty($_POST)) ) {
+	$oSQF->list_sql();	
+} elseif(isset ($_POST['job']) && ($_POST['job']== 'show_info') ) {
+	$oSQF->show_info();
+} elseif(isset ($_POST['toggle']) ) {
+	$oSQF->toggle_active( $_POST['toggle'] );
+} elseif(isset ($_POST['execute_sql']) ) {
+	$oSQF->execute_sql( $_POST['execute_sql'] );
+} elseif(isset ($_POST['edit_sql']) && ($_POST['edit_sql']!= '') ) {
+	$oSQF->edit_sql($_POST['edit_sql']);
+} elseif(isset ($_POST['cancel']) ) {
+	$oSQF->list_sql();	
+} elseif(isset ($_POST['save_sql']) && ($_POST['save_sql']!= '') ) {
+	$oSQF->save_sql($_POST['save_sql']);
+} elseif(isset ($_POST['delete_sql']) && ($_POST['delete_sql']!= '') ) {
+	$oSQF->delete_sql($_POST['delete_sql']);
+}
 
-/**
- *	Load Language file
- */
-$lang = dirname(__FILE__)."/languages/".LANGUAGE.".php";
-include( file_exists($lang) ? $lang : dirname(__FILE__)."/languages/EN.php" );
-
-$parser->addGlobal('MOD_SQLEXECUTER', $MOD_SQLEXECUTER);
-
-if ( isset( $_REQUEST[ 'del' ] ) && is_numeric( $_REQUEST[ 'del' ] ) )
-{
-    $_POST[ 'markedsql' ] = $_REQUEST[ 'del' ];
-    $_REQUEST[ 'delete' ]     = 1;
-}
-if ( isset( $_REQUEST[ 'toggle' ] ) && is_numeric( $_REQUEST[ 'toggle' ] ) )
-{
-    toggle_active( $_REQUEST[ 'toggle' ] );
-    list_sql();
-}
-elseif ( isset( $_REQUEST[ 'execute' ] ) && is_numeric( $_REQUEST[ 'execute' ] ) )
-{
-    $message = execute_sql( $_REQUEST[ 'execute' ] );
-    list_sql( $message );
-}
-elseif ( isset( $_REQUEST[ 'add' ] ) )
-{
-    edit_sql( 'new' );
-}
-elseif ( isset( $_REQUEST[ 'edit' ] ) && !isset( $_REQUEST[ 'cancel' ] ) )
-{
-    edit_sql( $_REQUEST[ 'edit' ] );
-}
-elseif ( isset( $_REQUEST[ 'delete' ] ) && !isset( $_REQUEST[ 'cancel' ] ) )
-{
-    delete_sql();
-}
-elseif ( isset( $_REQUEST[ 'datafile' ] ) && is_numeric( $_REQUEST[ 'datafile' ] ) )
-{
-    edit_datafile( $_REQUEST[ 'datafile' ] );
-}
-elseif ( isset( $_REQUEST[ 'perms' ] ) && !isset( $_REQUEST[ 'cancel' ] ) )
-{
-    manage_perms();
-}
-else
-{
-    list_sql();
-}
 
 ?>

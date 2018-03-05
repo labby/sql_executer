@@ -4,7 +4,7 @@
  *  @module         SQL-Executer
  *  @version        see info.php of this module
  *  @authors        CMS-LAB
- *  @copyright      2013-2017 cms-lab 
+ *  @copyright      2013-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *
@@ -36,75 +36,21 @@ else
 }
 // end include class.secure.php
 
-
-
-
 // create new table
-	$table = TABLE_PREFIX .'mod_sqlexecuter';
-	$database->query("CREATE TABLE `$table` (
-		`id` INT NOT NULL auto_increment,
-		`name` VARCHAR(32) NOT NULL,
-		`code` LONGTEXT NOT NULL ,
-		`description` TEXT NOT NULL,
-		`modified_when` INT NOT NULL default '0',
-		`modified_by` INT NOT NULL default '0',
-		`active` INT NOT NULL default '0',
-		`admin_edit` INT NOT NULL default '0',
-		`admin_view` INT NOT NULL default '0',
-		`show_wysiwyg` INT NOT NULL default '0',
-		`comments` TEXT NOT NULL,
-		PRIMARY KEY ( `id` )
-		)"
-	);
-	
-	$database->query("INSERT INTO `".TABLE_PREFIX."mod_sqlexecuter` (name, code, description, active, comments  ) 
-					VALUES ('example', 'UPDATE `lep_pages` SET `language` = \"EN\" where `language` = \"EN\";', 'set language', '1', 'runs pages table')");	
-	
-	// check for errors
-if ($database->is_error()) {
- echo $datbase->get_error();
-}
+$table_fields="
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(32) NOT NULL default '',
+	`description` TEXT NOT NULL,
+	`comments` TEXT NOT NULL,	
+	`code` LONGTEXT NOT NULL ,
+	`active` INT NOT NULL default '0',	
+	 PRIMARY KEY ( `id` )
+";
+LEPTON_handle::install_table("mod_sqlexecuter", $table_fields);
 
-
-
-// create the new permissions table
-$table = TABLE_PREFIX .'mod_sqlexecuter_permissions';
-$database->query("CREATE TABLE `$table` (
-	`id` INT(10) UNSIGNED NOT NULL,
-	`edit_groups` VARCHAR(50) NOT NULL,
-	`view_groups` VARCHAR(50) NOT NULL,
-	PRIMARY KEY ( `id` )
-	)"
-);
-
-	// check for errors
-if ($database->is_error()) {
- echo $datbase->get_error();
-}
-
-// create the settings table
-$table = TABLE_PREFIX .'mod_sqlexecuter_settings';
-$database->query("CREATE TABLE `$table` (
-	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	`attribute` VARCHAR(50) NOT NULL DEFAULT '0',
-	`value` VARCHAR(50) NOT NULL DEFAULT '0',
-	PRIMARY KEY (`id`)
-	)"
-);
-
-	// check for errors
-if ($database->is_error()) {
- echo $datbase->get_error();
-}
-
-// insert settings
-$database->query("INSERT INTO `".TABLE_PREFIX ."mod_sqlexecuter_settings` (`id`, `attribute`, `value`) VALUES
-(1, 'Delete sql', '1'),
-(2, 'Add sql', '1'),
-(3, 'Modify sql', '1'),
-(4, 'Manage perms', '1');
-");
-
-
-
+// insert some default values
+$field_values="
+(NULL,'empty temp', 'empty temp table', 'if your ip is locked ', 'TRUNCATE lep_temp', 1)
+";
+LEPTON_handle::insert_values("mod_sqlexecuter", $field_values);
 ?>
