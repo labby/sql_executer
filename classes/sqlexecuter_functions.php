@@ -13,6 +13,12 @@
 class sqlexecuter_functions extends sqlexecuter
 {
 	public static $instance;
+	
+public function initialize() 
+	{	
+		parent::initialize();
+		$this->admin = LEPTON_admin::getInstance();
+	}		
 
 public function list_sql() 
 	{	
