@@ -22,7 +22,7 @@
 	</div>
 	<div class="ui basic segment">				
 		<h3 class="ui {{ oSQF.addon_color }} header">{{ oSQF.language.list_queries }}</h3>
-		<form class="ui form" id="list" action="{{ oSQF.action_url }}" method="post">	
+		<form onsubmit="return sql_executer_confirm_ok;" class="ui form" id="list" action="{{ oSQF.action_url }}" method="post">	
 			<input type="hidden" name="tool" value="{{ oSQF.module_directory }}" />			
 			<input type="hidden" name="leptoken" value="{{ leptoken }}" />						
 			{% if info != '' %}<div class="ui green message">{{ info }}</div>{% endif %}
@@ -45,7 +45,7 @@
 						<td>{{ item.description }}</td>		
 						<td>
 							<button class="ui basic button blank" type="submit" name="edit_sql" value="{{ item.id }}" title="{{ TEXT.MODIFY }}" formaction="{{ oSQF.action_url }}" formmethod="post"><i class="large {{ oSQF.addon_color }} write icon"></i></button>
-							<button class="ui basic button blank" type="submit" name="delete_sql" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oSQF.action_url }}" formmethod="post"><i class="large red remove icon"></i></button>							
+							<button onclick="deleteSQL({{ item.id }});" class="ui basic button blank" type="submit" name="delete_sql" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oSQF.action_url }}" formmethod="post"><i class="large red remove icon"></i></button>							
 							<button class="ui basic button blank" type="submit" name="toggle" value="{{ item.id }}" title="{% if item.active == 1 %}{{ oSQF.language.active }}{% else %}{{ oSQF.language.not_active }}{% endif %}" formaction="{{ oSQF.action_url }}" formmethod="post">
 							{% if item.active == 1 %}
 								<i class="large green thumbs up icon"></i>
@@ -73,4 +73,23 @@
 		<div class="spacer2"></div>					
 	</div>
 </div>
+
+<script type="text/javascript">
+var sql_executer_confirm_ok = true;
+function deleteSQL( item_id )
+{
+    // alert("call "+item_id);
+    if( confirm("Arrrrrr eeee yyyyoooo sure?????"))
+    {
+        sql_executer_confirm_ok = true;
+        var ref = $("#list");
+        ref.submit();
+    } else {
+        sql_executer_confirm_ok = false;
+        return false;
+    }
+    
+}
+</script>
+
 {% endautoescape %}
