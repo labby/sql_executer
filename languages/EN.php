@@ -50,6 +50,7 @@ $MOD_SQLEXECUTER = array(
  	'run' => 'Execute',
  	'run_ok' => 'SQL Query executed succesfull',
  	'run_false' => 'SQL Query executed not succesfull',	
+ 	'sure' 	=> 'Are you sure?',	
 	'toggle_saved' => 'toggle saved'
 );
 

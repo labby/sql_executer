@@ -78,8 +78,7 @@
 var sql_executer_confirm_ok = true;
 function deleteSQL( item_id )
 {
-    // alert("call "+item_id);
-    if( confirm("Arrrrrr eeee yyyyoooo sure?????"))
+    if( confirm("{{ oSQF.language.sure }}"))
     {
         sql_executer_confirm_ok = true;
         var ref = $("#list");
@@ -87,8 +86,7 @@ function deleteSQL( item_id )
     } else {
         sql_executer_confirm_ok = false;
         return false;
-    }
-    
+    }  
 }
 </script>
 

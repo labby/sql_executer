@@ -49,7 +49,8 @@ $MOD_SQLEXECUTER = array(
 	'record_saved' => 'Datensatz gespeichert',
  	'run' => 'Ausführen',  
  	'run_ok' => 'SQL Query erfolgreich ausgeführt',
- 	'run_false' => 'SQL Query nicht erfolgreich ausgeführt',	
+ 	'run_false' => 'SQL Query nicht erfolgreich ausgeführt',
+ 	'sure' 	=> 'Bist du sicher?',	
 	'toggle_saved' => 'Status umgestellt'
 );
 
